@@ -3,19 +3,27 @@
 const express = require('express');
 const router = express.Router();
 
-var data = require('../db/dummy-data');
+// var data = require('../db/dummy-data');
 
-// const { DATABASE } = require('../config');
-// const knex = require('knex')(DATABASE);
+const { DATABASE } = require('../config');
+const knex = require('knex')(DATABASE);
 
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/stories', (req, res) => {
-  if (req.query.search) {
-    const filtered = data.filter((obj) => obj.title.includes(req.query.search));
-    res.json(filtered);
-  } else {
-    res.json(data);
-  }
+  // if (req.query.search) {
+  //   const filtered = data.filter((obj) => obj.title.includes(req.query.search));
+  //   res.json(filtered);
+  // }
+ 
+  knex.select()
+    .from('stories')
+    .then( stories => {
+      return res.status(200).json(stories);
+    });
+  
+  // else {
+  //   res.json(data);
+  // }
 });
 
 /* ========== GET/READ SINGLE ITEMS ========== */
