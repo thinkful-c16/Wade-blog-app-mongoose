@@ -27,7 +27,8 @@ router.get('/stories', (req, res) => {
 /* ========== GET/READ SINGLE ITEMS ========== */
 router.get('/stories/:id', (req, res) => {
 
-  knex.select().from('stories')
+  knex('stories')
+    .select()
     .where( 'stories.id', req.params.id)
     .debug(true)
     .then(result => {
