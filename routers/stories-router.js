@@ -87,11 +87,12 @@ router.put('/stories/:id', jsonParser, (req, res) => {
   //   /***** Never Trust Users! *****/
   
   knex('stories').returning(['title', 'id', 'content'])
-    .where('stories.id', req.params.id)
     .update({
       title: req.body.title,
       content: req.body.content
-    }).then(([updatedItem]) => {
+    })
+    .where('stories.id', req.params.id)
+    .then(([updatedItem]) => {
       return res.status(200).json(updatedItem);
     });
 });
