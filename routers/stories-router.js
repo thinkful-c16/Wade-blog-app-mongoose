@@ -13,8 +13,8 @@ const knex = require('knex')(DATABASE);
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/stories', (req, res) => {
 
-  knex.select()
-    .from('stories')
+  knex('stories')
+    .select()
     .then( results => {
       return res.status(200, 'OK').json(results);
     })
