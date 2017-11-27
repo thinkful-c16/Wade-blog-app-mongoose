@@ -31,7 +31,7 @@ router.get('/stories/:id', (req, res) => {
     .select()
     .where( 'stories.id', Number(req.params.id))
     .debug(true)
-    .then(result => {
+    .then(([result]) => {
       return res.status(200, 'OK').json(result);
     })
     .catch(err => {
