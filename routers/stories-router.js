@@ -101,7 +101,7 @@ router.put('/stories/:id', jsonParser, (req, res) => {
 router.delete('/stories/:id', (req, res) => {
   knex('stories').where('stories.id', req.params.id)
     .del().then(emptyBody => {
-      return res.status(204);
+      return res.location('/stories').status(204);
     });
 });
 
