@@ -11,7 +11,7 @@
  * 
  */
 
-const ITEMS_URL = '/api/v1/stories/';
+// const ITEMS_URL = '/api/v1/stories/';
 
 function buildUrl(path, query) {
   var url = new URL(path, window.location.origin);
