@@ -29,7 +29,7 @@ router.get('/stories/:id', (req, res) => {
 
   knex('stories')
     .select()
-    .where( 'stories.id', req.params.id)
+    .where( 'stories.id', Number(req.params.id))
     .debug(true)
     .then(result => {
       return res.status(200, 'OK').json(result);
