@@ -29,7 +29,7 @@ router.get('/stories/:id', (req, res) => {
 
   knex('stories')
     .select()
-    .where( 'stories.id', Number(req.params.id))
+    .where( 'stories.id', req.params.id)
     .debug(true)
     .then(([result]) => {
       return res.status(200, 'OK').json(result);
@@ -68,7 +68,7 @@ router.post('/stories', jsonParser, (req, res) => {
 // /* ========== PUT/UPDATE A SINGLE ITEM ========== */
 router.put('/stories/:id', jsonParser, (req, res) => {
 //   const {title, content} = req.body;
-  const requiredFields = ['title', 'content', 'id'];
+  const requiredFields = ['title', 'content'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     if (!(field in req.body)) {
@@ -101,7 +101,7 @@ router.put('/stories/:id', jsonParser, (req, res) => {
 router.delete('/stories/:id', (req, res) => {
   knex('stories').where('stories.id', req.params.id)
     .del().then(emptyBody => {
-      return res.location('/stories').status(204);
+      return res.status(204);
     });
 });
 
