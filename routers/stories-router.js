@@ -58,7 +58,7 @@ router.post('/stories', jsonParser, (req, res) => {
     .insert({
       title: req.body.title,
       content: req.body.content
-    }).then(newItem => {
+    }).then(([newItem]) => {
       return res.status(201)
         .location(`/stories/${newItem.id}`)
         .json(newItem);
@@ -91,7 +91,7 @@ router.put('/stories/:id', jsonParser, (req, res) => {
     .update({
       title: req.body.title,
       content: req.body.content
-    }).then(updatedItem => {
+    }).then(([updatedItem]) => {
       return res.status(200).json(updatedItem);
     });
 });
@@ -101,7 +101,7 @@ router.put('/stories/:id', jsonParser, (req, res) => {
 router.delete('/stories/:id', (req, res) => {
   knex('stories').where('stories.id', req.params.id)
     .del().then(emptyBody => {
-      return res.status(204).json(emptyBody);
+      return res.status(204);
     });
 });
 
