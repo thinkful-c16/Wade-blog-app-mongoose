@@ -3,15 +3,14 @@
 const express = require('express');
 
 const {DATABASE_URL} = require('../config');
-const mongoose = require('./config');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(DATABASE_URL);
+// mongoose.connect(DATABASE_URL, { useMongoClient: true });
 
 const {STORY} = require('../models');
 
 const router = express.Router();
 
-// var data = require('../db/dummy-data');
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
