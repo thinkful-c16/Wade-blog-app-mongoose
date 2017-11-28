@@ -1,7 +1,7 @@
 /* global jQuery, handle, $, api */
 'use strict';
 
-const ITEMS_URL = '/api/v1/stories/';
+const ITEMS_URL = '/api/v1/posts/';
 
 const renderPage = function (store) {
   if (store.demo) {

@@ -89,9 +89,8 @@ router.put('/posts/:id', jsonParser, (req, res) => {
 
   BlogPost
     // all key/value pairs in toUpdate will be updated -- that's what `$set` does
-    .findByIdAndUpdate(req.params.id, {$set: toUpdate}, {upsert: true, new: true})
-
-    .then(post => res.status(204).json(post.apiRepr()))
+    .findByIdAndUpdate(req.params.id, {$set: toUpdate}, {new: true})
+    .then(post => res.status(200).json(post.apiRepr()))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
@@ -100,7 +99,7 @@ router.put('/posts/:id', jsonParser, (req, res) => {
 router.delete('/posts/:id', (req, res) => {
   BlogPost
     .findByIdAndRemove(req.params.id)
-    .then(post => res.status(204))
+    .then(post => res.status(204)).end()
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
