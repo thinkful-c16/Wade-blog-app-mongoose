@@ -2,8 +2,29 @@
 
 const mongoose = require('mongoose');
 
-const storySchema = mongoose.Schema({});
+const blogPostSchema = mongoose.Schema({
+  title: {type: String, required: true},
+  content: String,
+  author: {
+    firstName: String,
+    lastName: String
+  }
+});
 
-const Story = mongoose.model('Story', storySchema);
+// any virtuals or methods
 
-module.exports = {Story};
+blogPostSchema.virtual('fullName').get(function() {
+  return `${this.author.firstName} ${this.author.lastName}`;
+});
+
+blogPostSchema.methods.apiRepr = function() {
+  return {
+    title: this.title,
+    content: this.content,
+    author: this.fullName
+  };
+};
+
+const BlogPost = mongoose.model('BlogPost', blogPostSchema, 'stories');
+
+module.exports = {BlogPost};
