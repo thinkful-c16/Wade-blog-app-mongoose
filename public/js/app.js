@@ -1,8 +1,6 @@
 /* global jQuery, handle, $, api */
 'use strict';
 
-const ITEMS_URL = '/api/v1/posts/';
-
 const renderPage = function (store) {
   if (store.demo) {
     $('.view').css('background-color', 'gray');
@@ -34,6 +32,7 @@ const renderDetail = function (store) {
   const item = store.item;
   el.find('.title').text(item.title);
   el.find('.content').text(item.content);
+  el.find('.author').text(item.author);
 };
 
 const handleSearch = function (event) {
