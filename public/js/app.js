@@ -25,6 +25,7 @@ const renderEdit = function (store) {
   const item = store.item;
   el.find('[name=title]').val(item.title);
   el.find('[name=content]').val(item.content);
+  el.find('[name=author]').val(item.author);
 }; 
 
 const renderDetail = function (store) {
@@ -65,7 +66,8 @@ const handleCreate = function (event) {
 
   const document = {
     title: el.find('[name=title]').val(),
-    content: el.find('[name=content]').val()
+    content: el.find('[name=content]').val(),
+    author: el.find('[name=author]').val()
   };
   api.create(document)
     .then(response => {
@@ -87,7 +89,8 @@ const handleUpdate = function (event) {
   const document = {
     id: store.item.id,
     title: el.find('[name=title]').val(),
-    content: el.find('[name=content]').val()
+    content: el.find('[name=content]').val(),
+    author: el.find('[name=author]').val()
   };
   api.update(document, store.token)
     .then(response => {
