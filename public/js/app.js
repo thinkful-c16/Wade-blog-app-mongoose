@@ -33,7 +33,7 @@ const renderDetail = function (store) {
   const item = store.item;
   el.find('.title').text(item.title);
   el.find('.content').text(item.content);
-  el.find('.author').text(item.author);
+  el.find('.author').text(`${item.author.firstName} ${item.author.lastName}`);
 };
 
 const handleSearch = function (event) {
@@ -67,7 +67,10 @@ const handleCreate = function (event) {
   const document = {
     title: el.find('[name=title]').val(),
     content: el.find('[name=content]').val(),
-    author: el.find('[name=author]').val()
+    author: {
+      firstName: el.find('[name=firstName]').val(),
+      lastName: el.find('[name=lastName]').val()
+    }
   };
   api.create(document)
     .then(response => {
