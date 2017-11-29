@@ -20,10 +20,9 @@ router.get('/posts', (req, res) => {
     .find()
     .limit(10)
     .then(posts => {
-      res.json({
-        posts: posts.map(
-          (post) => post.apiRepr())
-      });
+      res.status(200)
+        .json(posts.map((post) =>
+          post.apiRepr()));
     })
     .catch( err => {
       console.error(err);
