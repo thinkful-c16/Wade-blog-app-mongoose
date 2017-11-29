@@ -33,7 +33,7 @@ const renderDetail = function (store) {
   const item = store.item;
   el.find('.title').text(item.title);
   el.find('.content').text(item.content);
-  el.find('.author').text(`${item.author.firstName} ${item.author.lastName}`);
+  el.find('.author').text(item.author);
 };
 
 const handleSearch = function (event) {
